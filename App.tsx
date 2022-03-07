@@ -1,23 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import 'react-native-gesture-handler';
+//redux
+import { Provider } from 'react-redux';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { store } from './src/store/store';
+import { NavigationContainer } from '@react-navigation/native';
+//Navigator
+import Stack from './src/navigator/Stack';
+
+
 
 //1) Set up redux
-//2)
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Test RN with build at uber clone</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={ store }>
+      <NavigationContainer>
+        <SafeAreaProvider>
+          <Stack />
+        </SafeAreaProvider>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
