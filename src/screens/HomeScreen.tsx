@@ -1,15 +1,20 @@
 import React from 'react';
 import 'react-native-gesture-handler';
-import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import tw from 'twrnc';
+import { useDispatch } from 'react-redux';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { GOOGLE_MAPS_APIKEY } from '@env';
+import { Image, SafeAreaView, StyleSheet, View } from 'react-native';
+import { GOOGLE_MAPS_APIKEY } from 'react-native-dotenv';
+import tw from 'twrnc';
 
 //components
 import { NavOptions } from '../components/NavOptions';
+import { setOrigin } from '../slices/navSlice';
 
 export const HomeScreen = () => {
-    console.log('yo soy el api:',GOOGLE_MAPS_APIKEY)
+    // console.log('yo soy el api:',GOOGLE_MAPS_APIKEY);
+
+    const dispatch = useDispatch();
+
     return (
         <SafeAreaView style={tw`bg-white h-full`}>
             <View style={tw`p-5`}>
@@ -26,10 +31,6 @@ export const HomeScreen = () => {
 
                 <GooglePlacesAutocomplete
                     placeholder='Where From?'
-                    onPress={(data, details = null) => {
-                        // 'details' is provided when fetchDetails = true
-                        console.log(data, details);
-                      }}
                     styles={{
                         container: {
                             flex: 0,
@@ -38,6 +39,16 @@ export const HomeScreen = () => {
                             fontSize: 18,
                         },
                     }}
+                    onPress={(data, details = null) =>{
+                        dispatch(setOrigin({
+                            location: details?.geometry.location,
+                            description: data.description
+                        }))
+                        // console.log('yo soy data:',data, 'yo soy details:',details);
+                    }}
+                    fetchDetails
+                    enablePoweredByContainer={false}
+                    minLength={2}
                     query={{
                         key: GOOGLE_MAPS_APIKEY,
                         language: 'en',

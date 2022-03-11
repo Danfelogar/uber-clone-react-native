@@ -5,7 +5,10 @@ module.exports = function(api) {
     plugins: [
       [
         'module:react-native-dotenv',
-        { moduleName: '@env', path: '.env' },
+        {
+          moduleName: 'react-native-dotenv',
+          path: '.env'
+        },
       ],
     ],
   };
