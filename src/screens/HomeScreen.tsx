@@ -9,6 +9,7 @@ import tw from 'twrnc';
 //components
 import { NavOptions } from '../components/NavOptions';
 import { setOrigin } from '../slices/navSlice';
+import NavFavourite from '../components/NavFavourite';
 
 export const HomeScreen = () => {
     // console.log('yo soy el api:',GOOGLE_MAPS_APIKEY);
@@ -58,6 +59,7 @@ export const HomeScreen = () => {
                     //wait time
                 />
                 <NavOptions />
+                <NavFavourite />
             </View>
         </SafeAreaView>
     )

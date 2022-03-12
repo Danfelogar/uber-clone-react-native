@@ -8,6 +8,8 @@ import tw from 'twrnc';
 
 import { Nav } from '../interfaces/appInterfaces';
 import { setDestination } from '../slices/navSlice';
+import NavFavourite from './NavFavourite';
+import { Icon } from 'react-native-elements';
 
 const NavigateCard = () => {
     // console.log('yo soy el api:',GOOGLE_MAPS_APIKEY);
@@ -44,6 +46,35 @@ const NavigateCard = () => {
                     }}
                     debounce={400}
                 />
+                <NavFavourite />
+
+                <View style={tw`flex-row bg-white justify-evenly py-2 mt-auto border-t border-gray-100`}>
+                    <TouchableOpacity
+                    onPress={() => navigate('RideOptionsCard')}
+                    style={tw`flex flex-row justify-between bg-black w-24 px-4 py-3 rounded-full`}>
+                        <Icon
+                        name='car'
+                        type='font-awesome'
+                        color='white'
+                        size={16}
+                        //propiedad para que no moleste typeScript con el Icon
+                        tvParallaxProperties={undefined}
+                        />
+                        <Text style={tw`text-white text-center`}>Rides</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={tw`flex flex-row justify-between w-24 px-4 py-3 rounded-full`}>
+                        <Icon
+                        name='fast-food-outline'
+                        type='ionicon'
+                        color='black'
+                        size={16}
+                        //propiedad para que no moleste typeScript con el Icon
+                        tvParallaxProperties={undefined}
+                        />
+                        <Text style={tw`text-center`}>Eats</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     </SafeAreaView>

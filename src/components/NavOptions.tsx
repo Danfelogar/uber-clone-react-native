@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import tw from 'twrnc';
-import { Nav } from '../interfaces/appInterfaces';
+import { Nav, Origin } from '../interfaces/appInterfaces';
 import { useSelector } from 'react-redux';
 import { selectOrigin } from '../slices/navSlice';
 
@@ -26,7 +26,7 @@ const data = [
 export const NavOptions = () => {
 
     const { navigate } = useNavigation<Nav>();
-    const origin = useSelector(selectOrigin);
+    const origin = useSelector<Origin>(selectOrigin);
 
     return (
         <FlatList

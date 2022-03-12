@@ -7,3 +7,10 @@ export interface NavigationState {
 export interface Nav {
     navigate: (value: string) => void;
 };
+
+export interface selected {
+    id:         string;
+    title:      string;
+    multiplier: number;
+    image:      string;
+};
